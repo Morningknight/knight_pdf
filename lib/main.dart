@@ -7,7 +7,7 @@ import 'core/utils/constants.dart';
 import 'providers/image_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/home/home_screen.dart';
-import 'screens/images_to_pdf/image_to_pdf_screen.dart';
+import 'screens/image_to_pdf/image_to_pdf_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
