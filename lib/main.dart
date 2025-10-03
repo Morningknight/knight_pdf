@@ -4,10 +4,11 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/utils/constants.dart';
-import 'providers/image_provider.dart';
+import 'providers/image_provider.dart' as app;
 import 'providers/theme_provider.dart';
 import 'screens/home/home_screen.dart';
-import 'screens/image_to_pdf/image_to_pdf_screen.dart';
+import 'screens/images_to_pdf/image_to_pdf_screen.dart';
+import 'screens/view_files/view_files_screen.dart'; // <-- Import the new screen
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,15 +17,13 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        // Add the new ImageProvider
-        ChangeNotifierProvider(create: (_) => ImageProvider()),
+        ChangeNotifierProvider(create: (_) => app.ImageProvider()),
       ],
       child: const KnightPDFApp(),
     ),
   );
 }
 
-// Setup GoRouter configuration
 final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: [
@@ -32,10 +31,14 @@ final GoRouter _router = GoRouter(
       path: '/',
       builder: (context, state) => const HomeScreen(),
     ),
-    // Add the new route for our screen
     GoRoute(
       path: '/images-to-pdf',
       builder: (context, state) => const ImageToPdfScreen(),
+    ),
+    // Add the new route for the file viewer
+    GoRoute(
+      path: '/view-files',
+      builder: (context, state) => const ViewFilesScreen(),
     ),
   ],
 );
