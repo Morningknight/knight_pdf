@@ -18,7 +18,7 @@ dependencies:
   cupertino_icons: ^1.0.6
 
   # --- Core PDF & Files ---
-  pdf: ^3.10.8 # Creating PDFs
+  pdf: ^3.11.0 # Creating PDFs
   path_provider: ^2.1.2 # Finding where to save files
   file_picker: ^8.0.0 # Picking existing PDFs/Excels
   open_filex: ^4.4.0 # Opening files externally (fallback)
