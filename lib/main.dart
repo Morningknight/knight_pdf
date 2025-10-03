@@ -4,18 +4,20 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/utils/constants.dart';
+import 'providers/image_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/home/home_screen.dart';
+import 'screens/images_to_pdf/image_to_pdf_screen.dart';
 
 void main() {
-  // Ensure Flutter bindings are initialized before specialized code
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        // We will add more providers (like PDFProvider) here later
+        // Add the new ImageProvider
+        ChangeNotifierProvider(create: (_) => ImageProvider()),
       ],
       child: const KnightPDFApp(),
     ),
@@ -30,7 +32,11 @@ final GoRouter _router = GoRouter(
       path: '/',
       builder: (context, state) => const HomeScreen(),
     ),
-    // We will add routes for EditImage, ViewPDF etc. here
+    // Add the new route for our screen
+    GoRoute(
+      path: '/images-to-pdf',
+      builder: (context, state) => const ImageToPdfScreen(),
+    ),
   ],
 );
 
@@ -39,17 +45,14 @@ class KnightPDFApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Listen to theme changes
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return MaterialApp.router(
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
-      // Apply Themes
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.themeMode,
-      // Connect Router
       routerConfig: _router,
     );
   }
