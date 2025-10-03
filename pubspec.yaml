@@ -29,7 +29,7 @@ dependencies:
   image_picker: ^1.0.7 # Camera/Gallery
   image_cropper: ^11.0.0 # Cropping UI
   image: ^4.1.7 # Low level image manipulation (filters/rotate)
-
+  excel: ^4.0.2
   # --- Specific Converters (Will add more later as needed) ---
   # We will add Excel/OCR packages in their respective parts to keep build light initially.
 
